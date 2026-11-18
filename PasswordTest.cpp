@@ -132,3 +132,17 @@ TEST(PasswordTest, mixed_case_uppercase_with_symbols)
 	bool actual = my_password.has_mixed_case("ABC!?");
 	ASSERT_EQ(false, actual);
 }
+
+TEST(PasswordTest, count_leading_characters_whole_string_same)
+{
+	Password my_password;
+	int actual = my_password.count_leading_characters("aaaa");
+	ASSERT_EQ(4, actual);
+}
+
+TEST(PasswordTest, mixed_case_separated_by_digits_and_symbols)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("1a!B");
+	ASSERT_EQ(true, actual);
+}
