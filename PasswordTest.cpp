@@ -97,3 +97,38 @@ TEST(PasswordTest, mixed_case_single_uppercase_letter)
 	bool actual = my_password.has_mixed_case("A");
 	ASSERT_EQ(false, actual);
 }
+
+TEST(PasswordTest, count_leading_characters_empty_string)
+{
+	Password my_password;
+	int actual = my_password.count_leading_characters("");
+	ASSERT_EQ(0, actual);
+}
+
+TEST(PasswordTest, count_leading_characters_case_sensitive)
+{
+	Password my_password;
+	int actual = my_password.count_leading_characters("Zzz");
+	ASSERT_EQ(1, actual);
+}
+
+TEST(PasswordTest, count_leading_characters_non_letter_characters)
+{
+	Password my_password;
+	int actual = my_password.count_leading_characters("   x");
+	ASSERT_EQ(3, actual);
+}
+
+TEST(PasswordTest, mixed_case_lowercase_with_digits)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("abc123");
+	ASSERT_EQ(false, actual);
+}
+
+TEST(PasswordTest, mixed_case_uppercase_with_symbols)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("ABC!?");
+	ASSERT_EQ(false, actual);
+}
